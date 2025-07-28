@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reinland Glass</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-['Roboto'] bg-gray-100 text-gray-800">
+	  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/595972541497" target="_blank" class="fixed bottom-4 right-4 bg-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 z-20">
+    <img src="wa.svg" alt="WhatsApp" class="w-12 h-12">
+  </a>
+
+  <!-- Navbar -->
+  <nav class="bg-blue-900 text-white p-4 sticky top-0 z-10 shadow-md">
+    <div class="container mx-auto flex justify-between items-center">
+      <img src="logo.svg" alt="Reinland Glass" class="h-10">
+      <div id="menu" class="hidden md:flex md:space-x-4 flex-col md:flex-row absolute md:static top-16 left-0 w-full md:w-auto bg-blue-900 md:bg-transparent p-4 md:p-0">
+        <a href="#inicio" class="hover:text-blue-300 py-2 md:py-0">Inicio</a>
+        <a href="#acerca" class="hover:text-blue-300 py-2 md:py-0">Acerca</a>
+        <a href="#productos" class="hover:text-blue-300 py-2 md:py-0">Productos</a>
+        <a href="#contacto" class="hover:text-blue-300 py-2 md:py-0">Contacto</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="inicio" class="bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('puertas.jpg')">
+    <div class="container mx-auto text-center bg-black bg-opacity-50 p-8 rounded-lg">
+      <h2 class="text-4xl md:text-5xl font-bold mb-4">Aberturas de Calidad para tu Hogar</h2>
+      <p class="text-lg md:text-xl mb-6">Puertas y ventanas diseñadas para durar, con estilo y funcionalidad.</p>
+      <!--<a href="#contacto" class="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700">Contáctanos</a>-->
+    </div>
+  </section>
+
+  <!-- Acerca Section -->
+  <section id="acerca" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Acerca de Nosotros</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="puertas.jpg" alt="Fábrica de aberturas" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+          <p class="text-lg mb-4">En <strong>Aberturas del Sur</strong>, llevamos más de 20 años fabricando puertas y ventanas de alta calidad. Nos especializamos en soluciones personalizadas que combinan diseño, durabilidad y eficiencia energética.</p>
+          <p class="text-lg mb-4">Nuestra fábrica está ubicada en Buenos Aires, Argentina, y trabajamos con materiales de primera línea para garantizar la satisfacción de nuestros clientes.</p>
+          <p class="text-lg">¡Transforma tu hogar con nuestras aberturas!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Productos Section -->
+  <section id="productos" class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Nuestros Productos</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center">
+          <img src="ventanas.jpg" alt="Ventanas" class="rounded-lg mb-4 w-full">
+          <h3 class="text-xl font-semibold mb-2">Ventanas</h3>
+          <p>Ventanas de aluminio y PVC con diseños modernos y excelente aislamiento térmico.</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center">
+          <img src="puertas.jpg" alt="Puertas" class="rounded-lg mb-4 w-full">
+          <h3 class="text-xl font-semibold mb-2">Puertas</h3>
+          <p>Puertas de madera, aluminio y acero, perfectas para cualquier estilo de hogar.</p>
+        </div>
+        <div class="bg-gray-100 p-6 rounded-lg shadow-md text-center">
+          <img src="ventanas.jpg" alt="Aberturas especiales" class="rounded-lg mb-4 w-full">
+          <h3 class="text-xl font-semibold mb-2">Aberturas Especiales</h3>
+          <p>Soluciones personalizadas para proyectos únicos, con acabados de alta calidad.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto Section -->
+  <section id="contacto" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Contáctanos</h2>
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
+          <p class="mb-2"><strong>Dirección:</strong> Campo 5, Colonia Sommerfeld, Caaguazu, Paraguay</p>
+          <p class="mb-2"><strong>Teléfono:</strong> 0972 541 497</p>
+          <p class="mb-2"><strong>Horario:</strong> Lunes a Viernes, 7:00 - 17:00</p>
+          <div class="mt-4">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46911.07886668878!2d-55.709069051768715!3d-25.404735174164127!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x945f4572da05da49%3A0x86e6181da8eafc99!2sReinland%20Glass!5e1!3m2!1ses-419!2spy!4v1753388934529!5m2!1ses-419!2spy" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+        </div>
+        <!--<div class="md:w-1/2 md:pl-8">
+          <h3 class="text-xl font-semibold mb-4">Envíanos un Mensaje</h3>
+          <div class="space-y-4">
+            <input type="text" id="nombre" placeholder="Nombre" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <input type="email" id="email" placeholder="Email" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600">
+            <textarea id="mensaje" placeholder="Mensaje" rows="5" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600"></textarea>
+            <button onclick="enviarMensaje()" class="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700">Enviar</button>
+          </div>
+        </div>-->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Reinland Glass. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function enviarMensaje() {
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const mensaje = document.getElementById('mensaje').value;
+      if (nombre && email && mensaje) {
+        alert('Mensaje enviado con éxito. ¡Te contactaremos pronto!');
+        document.getElementById('nombre').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('mensaje').value = '';
+      } else {
+        alert('Por favor, completa todos los campos.');
+      }
+    }
+
+    // Toggle mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
