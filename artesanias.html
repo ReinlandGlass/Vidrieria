@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reinland Glass</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-['Roboto'] bg-gray-100 text-gray-800">
+	  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/595972541497" target="_blank" class="fixed bottom-4 right-4 bg-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 z-20">
+    <img src="wa.svg" alt="WhatsApp" class="w-12 h-12">
+  </a>
+
+  <!-- Productos Section -->
+  <section id="productos" class="bg-white py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Artesania</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gray-100 p-1 rounded-lg shadow-md text-center">
+          <h3 class="text-xl font-semibold mb-2">Normales</h3>
+		  <img src="artesanias.jpg" alt="Ventanas" class="rounded-lg mb-1 w-full">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-4">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Reinland Glass. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    function enviarMensaje() {
+      const nombre = document.getElementById('nombre').value;
+      const email = document.getElementById('email').value;
+      const mensaje = document.getElementById('mensaje').value;
+      if (nombre && email && mensaje) {
+        alert('Mensaje enviado con éxito. ¡Te contactaremos pronto!');
+        document.getElementById('nombre').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('mensaje').value = '';
+      } else {
+        alert('Por favor, completa todos los campos.');
+      }
+    }
+
+    // Toggle mobile menu
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+      const menu = document.getElementById('menu');
+      menu.classList.toggle('hidden');
+    });
+  </script>
+</body>
+</html>
