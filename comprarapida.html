@@ -189,7 +189,7 @@ function renderProducts(){
 		var assemblyoption='';
 		if(!p.category.includes('Armado')){assemblyoption=`<label style="font-size:10pt;">
 					  <input type="checkbox" id="a${p.id}" style="margin:0;vertical-align:middle;">
-					  Armado +Gs ${p.price},000
+					  Armado +Gs ${formatThousands(p.price)},000
 					</label>`;}
 		html+=`
 		<div class="card">
@@ -197,7 +197,7 @@ function renderProducts(){
 			<div class="card-body">
 				<h4>${p.productname}</h4>
 				<div style="font-size:10pt;color:grey;">${p.size}cm</div>
-				<div class="price">Gs <a style="font-size:18pt;">${p.price}</a>,000</div>
+				<div class="price">Gs <a style="font-size:18pt;">${formatThousands(p.price)}</a>,000</div>
 				<div class="controls">
 					Cant <input type="number" value="1" id="q${p.id}">
 					<br>
@@ -245,7 +245,7 @@ function renderCart(){
 		total+=c.total;
 		html+=`
 		<div class="cart-item">
-			<span>${c.qty}x <img style="height:20px;" src="comprarapida/${c.id}.jpg"></img> ${c.name} ${c.asm?"(Armado)":""} = ${c.total},000</span>
+			<span>${c.qty}x <img style="height:20px;" src="comprarapida/${c.id}.jpg"></img> ${c.name} ${c.asm?"(Armado)":""} = ${formatThousands(c.total)},000</span>
 			<button class="remove" onclick="removeItem(${i})">✕</button>
 		</div>`;
 	});
@@ -254,12 +254,12 @@ function renderCart(){
 	total+=discount;
 		html+=`
 		<div class="cart-item">
-			<span>descuento mayorista ${discount},000</span>
+			<span>descuento mayorista ${formatThousands(discount)},000</span>
 		</div>`;
 	}
 
 	document.getElementById("cartItems").innerHTML=html||"<i>Carrito vacío</i>";
-	document.getElementById("totalPrice").innerText="Total: "+total+",000";
+	document.getElementById("totalPrice").innerText="Total: "+formatThousands(total)+",000";
 }
 
 function checkout(){
@@ -267,17 +267,17 @@ function checkout(){
 
 	let msg="Pedido:%0A";
 	cart.forEach(c=>{
-		msg+=`${c.qty}x ${c.name} ${c.asm?"(Armado)":""} = ${c.total},000%0A`;
+		msg+=`${c.qty}x ${c.name} ${c.asm?"(Armado)":""} = ${formatThousands(c.total)},000%0A`;
 	});
 	//DISCOUNT CODE IS COPY FROM renderCart function
 	var total=cart.reduce((s,c)=>s+c.total,0);
 	var discount=Math.floor(-0.1*total);
 	if(Math.abs(discount)>50){
 	total+=discount;
-		msg+=`descuento mayorista ${discount},000%0A`;
+		msg+=`descuento mayorista ${formatThousands(discount)},000%0A`;
 	}
 	/////////
-	msg+=`%0ATotal: ${total},000%0A`;
+	msg+=`%0ATotal: ${formatThousands(total)},000%0A`;
 	msg+=`Nombre: ${document.getElementById('name').value}%0ADirección: ${document.getElementById('address').value}`;
 
 	let url=`https://wa.me/${phone}?text=${msg}`;
@@ -297,6 +297,11 @@ function showAddedToast(){
 	setTimeout(()=>toast.remove(),1000);
 }
 
+function formatThousands(n){
+  return Number(n).toLocaleString("en-US");
+}
+
+
 
 initCategories();
 renderProducts();
@@ -304,5 +309,3 @@ renderProducts();
 
 </body>
 </html>
-
-
