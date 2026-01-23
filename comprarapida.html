@@ -66,7 +66,7 @@ h1, h2, h3, h4, h5, h6{
 <body>
 
 <header>
-	<h2>Catálogo de Modelos MDF</h2>
+	<h2><img style="height:30px;" src="logo.svg"></img>&emsp;Catálogo de Artesanía</h2>
 	<p>Compra rápida por WhatsApp</p>
 </header>
 
@@ -127,6 +127,7 @@ var products=[
 	{id:8,productname:"Rompe Cabeza Vaca 3D",price:90,category:"Animales",size:"15x5x10"},
 	{id:9,productname:"Rompe Cabeza Picadora",price:70,category:"Máquinas,Vehículos",size:"20x12x10"},
 	{id:10,productname:"Rompe Cabeza Cosechadora",price:130,category:"Máquinas,Vehículos",size:"20x25x15"},
+	{title:"Compra Mayorista!",color:"red",text:"Cada Compra de 500 Mil incluye 10% de Descuento!",category:"ad"},
 	{id:11,productname:"Rompe Cabeza Helicoptero",price:90,category:"Aviones",size:"25x25x10"},
 	{id:12,productname:"Rompe Cabeza Scania",price:90,category:"Vehículos,Máquinas",size:"35x10x10"},
 	{id:13,productname:"Rompe Cabeza Scania Grande",price:180,category:"Vehículos,Máquinas",size:"70x20x20"},
@@ -135,41 +136,42 @@ var products=[
 	{id:16,productname:"Rompe Cabeza Caballo",price:90,category:"Animales",size:"25x10x25"},
 	{id:17,productname:"Rompe Cabeza Mini Helicoptero",price:15,category:"Aviones",size:"15x10x5"},
 	{id:18,productname:"Rompe Cabeza Helicoptero",price:40,category:"Aviones",size:"30x30x15"},
-	{id:19,productname:"Rompe Cabeza Conejo",price:20,category:"Animales,Canasta",size:"15x7x10"},
-	{id:20,productname:"Rompe Cabeza Canasta Bicicleta",price:40,category:"Canasta,Vehículos",size:"25x15x20"},
+	{id:19,productname:"Rompe Cabeza Conejo",price:20,category:"Animales,Cajita",size:"15x7x10"},
+	{id:20,productname:"Rompe Cabeza Canasta Bicicleta",price:40,category:"Cajita,Vehículos",size:"25x15x20"},
 	{id:21,productname:"Calendario Rotativo",price:100,category:"Armados,Calendarios",size:"18x8x18"},
-	
-	/*
-	{id:22,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:23,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:24,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:25,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:26,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:27,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:28,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:29,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:30,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:31,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:32,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:33,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:34,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:35,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:36,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:37,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:38,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:39,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:40,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:41,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:42,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:43,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:44,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:45,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:46,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:47,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:48,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:49,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	{id:50,productname:"Rompe Cabeza ",price:,category:"",size:""},
-	*/
+	{id:22,productname:"Figura Tematica Pescador",price:40,category:"Armados",size:"20x12x10"},
+	{id:23,productname:"Figura Tematica Cazador",price:40,category:"Armados",size:"20x12x10"},
+	{id:24,productname:"Rompe Cabeza Saegen",price:30,category:"Armados",size:"20x10"},
+	{id:25,productname:"Rompe Cabeza Sopa Animales",price:35,category:"Armados,Animales",size:"20x30"},
+	{id:26,productname:"Rompe Cabeza Dreieck",price:20,category:"Armados",size:"20x10"},
+	{id:27,productname:"Juego Futbol Magnetico",price:250,category:"Armados,Juegos",size:"30x30x10"},
+	{title:"Envíos a Todo Paraguay!",color:"green",text:"Te Enviámos tu Pedido por Transportadora!",category:"ad"},
+	{id:28,productname:"Marco para Fotos Vertical",price:50,category:"Marcos,Armados",size:"16x20"},
+	{id:29,productname:"Marco para Fotos Horizontal",price:50,category:"Marcos,Armados",size:"22x16"},
+	{id:30,productname:"Canasta Pascua CAJ-48003",price:150,category:"Pascua,Armados,Cajita",size:"20x20x40"},
+	{id:31,productname:"Canasta Pascua CAJ-48001",price:100,category:"Armados,Cajita,Pascua",size:"20x20x40"},
+	{id:32,productname:"Canasta Pascua CAJ-47001",price:80,category:"Armados,Cajita,Pascua",size:"30x18x10"},
+	{id:33,productname:"Canasta Pascua CAJ-37001",price:50,category:"Pascua,Armados,Cajita",size:"20x10x25"},
+	{id:34,productname:"Canasta Pascua CAJ-37002",price:50,category:"Armados,Cajita,Pascua",size:"20x3x25"},
+	{id:35,productname:"Cajita MDF",price:50,category:"Cajita,Armados",size:"15x15x6"},
+	{id:36,productname:"Cajita MDF",price:40,category:"Cajita,Armados",size:"10x11x5"},
+	{id:37,productname:"Cajita MDF",price:60,category:"Cajita,Armados",size:"19x19x7"},
+	{id:38,productname:"Cajita MDF",price:60,category:"Cajita,Armados",size:"19x19x4"},
+	{id:39,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados",size:"25x15x5"},
+	{id:40,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados",size:"25x15x5"},
+	{id:41,productname:"Iman MDF",price:10,category:"Imanes,Armados",size:"7"},
+	{id:42,productname:"Iman Acrilico",price:20,category:"Imanes,Armados",size:"7"},
+	{id:43,productname:"Llavero MDF",price:10,category:"Llaveros,Armados",size:"7"},
+	{id:44,productname:"Llavero Acrilico",price:20,category:"Llaveros,Armados",size:"7"},
+	{id:45,productname:"Llavero Acrilico Paraguay",price:20,category:"Llaveros,Armados",size:"7"},
+	{id:46,productname:"Iman Acrilico Paraguay",price:20,category:"Imanes,Armados",size:"7"},
+	{id:47,productname:"Vaca MDF con Logo Personalizable",price:30,category:"Armados,Personalizable",size:"15x5x10"},
+	{id:48,productname:"Obseqio Acrilico Personalizable",price:60,category:"Personalizable,Armado,Obseqio",size:"15x15"},
+	{id:49,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Obseqio,Personalizable,Armado",size:"15x15"},
+	{id:50,productname:"Obseqio MDF Personalizable",price:60,category:"Obseqio,Personalizable,Armado",size:"20x20"},
+	{id:51,productname:"Obseqio MDF Personalizable",price:60,category:"Personalizable,Armado,Obseqio",size:"15x15"},
+	{id:52,productname:"Obseqio MDF Personalizable",price:80,category:"Personalizable,Armado,Obseqio",size:"15x15"},
+	{id:53,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Personalizable,Armado,Obseqio",size:"15x15"},
 ];
 
 var cart=[];
@@ -178,14 +180,23 @@ var phone="595972541497"; // TU NÚMERO
 function initCategories(){
 	let cats=[...new Set(products.map(p=>p.category.split(',')[0]))];
 	let sel=document.getElementById("categoryFilter");
-	cats.forEach(c=>sel.innerHTML+=`<option value="${c}">${c}</option>`);
+	cats.forEach(c => c !== "ad" && (sel.innerHTML += `<option value="${c}">${c}</option>`));
 }
 
 function renderProducts(){
 	let cat=document.getElementById("categoryFilter").value;
 	let html="";
-	products.filter(p=>cat==="all"||p.category.includes(cat))
+	products.filter(p=>cat==="all"||p.category.includes(cat)||p.category==="ad")
 	.forEach(p=>{
+		if(p.category==="ad"){
+		html+=`
+			<div class="card" style="background-color:${p.color};color:white;">
+				<div class="card-body">
+					<h2>${p.title}</h2>
+					<h4>${p.text}</h4>
+				</div>
+			</div>`;
+		}else{
 		var assemblyoption='';
 		if(!p.category.includes('Armado')){assemblyoption=`<label style="font-size:10pt;">
 					  <input type="checkbox" id="a${p.id}" style="margin:0;vertical-align:middle;">
@@ -207,6 +218,7 @@ function renderProducts(){
 				</div>
 			</div>
 		</div>`;
+		}
 	});
 	document.getElementById("productList").innerHTML=html;
 }
@@ -309,4 +321,3 @@ renderProducts();
 
 </body>
 </html>
-
