@@ -1,69 +1,306 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Reinland Glass</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-  <style>
-	.buybutton{border-radius:8px;padding:3px;padding-left:8px;padding-right:8px;background-color:orange;color:black;font-size:18pt;transition:transform 0.2s;}
-	.buybutton:hover{transform:scale(1.2,1.2);}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Modelos MDF</title>
 
-	.buyprice{color:orange;font-size:18pt}
+<style>
+body{font-family:Arial;margin:0;background:#f4f4f4}
+header{background:#111;color:#fff;padding:15px;text-align:center}
+.container{max-width:1200px;margin:auto;padding:15px}
+.filter{margin-bottom:15px}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:15px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.15);overflow:hidden;display:flex;flex-direction:column}
+.card img{height:130px;width:100%;object-fit:contain;display:block;margin:auto;}
+.card-body{padding:12px;display:flex;flex-direction:column;height:100%}
+.price{font-weight:bold;color:red;}
+.controls{margin-top:auto}
+.controls input{width:60px}
+button{padding:8px;border:none;border-radius:6px;background:red;color:#fff;font-weight:bold;cursor:pointer}
+button:hover{opacity:.9}
 
-  </style>
+.cart{max-width:600px;margin-top:25px;background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.cart-item{border-bottom:1px solid #ddd;padding:6px 0;font-size:14px;display:flex;justify-content:space-between;align-items:center}
+.remove{background:#c0392b;padding:4px 8px;font-size:12px}
+.total{font-size:18px;font-weight:bold;margin-top:10px}
+.form-group{margin-top:10px}
+.form-group input,.form-group textarea{width:100%;padding:8px;border-radius:6px;border:1px solid #ccc}
+.checkout{background:#128c7e;width:100%;margin-top:10px}
+.qr{text-align:center;margin-top:15px;display:none}
+.qr img{width:200px}
+h1, h2, h3, h4, h5, h6{
+	margin: 0.3em 0;
+	line-height: 1.2;
+}
+
+
+
+#cartToast{
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	color:#128c7e;
+	font-size:20px;
+	font-weight:bold;
+	background:rgba(255,255,255,.9);
+	padding:12px 20px;
+	border-radius:10px;
+	box-shadow:0 4px 10px rgba(0,0,0,.15);
+	opacity:0;
+	pointer-events:none;
+	animation:toastFade 1s ease forwards;
+	z-index:9999;
+}
+
+@keyframes toastFade{
+	0%{opacity:0;transform:translate(-50%,-60%)}
+	20%{opacity:1;transform:translate(-50%,-50%)}
+	80%{opacity:1}
+	100%{opacity:0}
+}
+</style>
 </head>
-<body onload="onload();" class="font-['Roboto'] bg-gray-100 text-gray-800">
-	  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/595972541497" target="_blank" class="fixed bottom-4 right-4 bg-green-500 p-4 rounded-full shadow-lg hover:bg-green-600 z-20">
-    <img src="wa.svg" alt="WhatsApp" class="w-12 h-12">
-  </a>
 
-  <!-- Productos Section -->
-  <section id="productos" class="bg-white py-16">
-    <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Artesania</h2>
-      <div id="products" class="grid grid-cols-1 md:grid-cols-4 gap-8">
+<body>
 
-<h2>Cargando..</h2>
+<header>
+	<h2>Catálogo de Modelos MDF</h2>
+	<p>Compra rápida por WhatsApp</p>
+</header>
 
-      </div>
-    </div>
-  </section>
+<div class="container">
 
-  <!-- Footer -->
-  <footer class="bg-blue-900 text-white py-4">
-    <div class="container mx-auto px-4 text-center">
-      <p>© 2025 Reinland Glass. Todos los derechos reservados.</p>
-    </div>
-  </footer>
+	<div class="filter">
+		<select id="categoryFilter" onchange="renderProducts()">
+			<option value="all">Todas las categorías</option>
+		</select>
+	</div>
 
-  <script>
-  
-	function onload(){
-	var products=[
-	{"id":1,"productname":"Rompe Cabeza Barco","price":30},
-	{"id":2,"productname":"Rompe Cabeza Tractor","price":90},
-	{"id":3,"productname":"Rompe Cabeza Avioneta WW2","price":10},
-	{"id":4,"productname":"Rompe Cabeza Avion WW1","price":30},
-	{"id":5,"productname":"Rompe Cabeza Ford A","price":60},
-	{"id":6,"productname":"Rompe Cabeza Avion Cessna","price":60},
-	{"id":7,"productname":"Rompe Cabeza Autito","price":30},
-	{"id":8,"productname":"Rompe Cabeza Vaca 3D","price":90},
-	{"id":9,"productname":"Rompe Cabeza Picadora","price":70}
-	];
-	var data='';
+	<div class="products" id="productList"></div>
+
+	<div class="cart">
+		<h3>Carrito</h3>
+		<div id="cartItems"></div>
+		<div class="total" id="totalPrice">Total: 0</div>
+
+		<div class="form-group">
+			<input id="name" placeholder="Nombre">
+		</div>
+		<div class="form-group">
+			<textarea id="address" placeholder="Dirección de envío"></textarea>
+		</div>
+		
+		<br>
+		<div style="font-size:10pt;color:grey;">
+			<b style="color:black;">Transferencias</b>
+			<p>Banco Continental (Alias): David Hildebrand, RUC 3262453-0, CI 3262453, Cel 0973541497</p>
+			<p>Coop Credit&Union: 48458 David J Hildebrand (Aluminio)</p>
+			<p>Coop Sommerfeld: 272 David JD Hildebrand</p>
+		</div>
+
+		<button class="checkout" onclick="checkout()">Checkout por WhatsApp</button>
+		
+		<br>
+		<div style="font-size:10pt;color:grey;">*Envía el comprobante de la transferencia para finalizar su pedido</div>
+		<br>
+		<br>
+
+		<div class="qr" id="qrBox">
+			<p>Escaneá para enviar el pedido</p>
+			<img id="qrImg">
+		</div>
+	</div>
+
+</div>
+
+<script>
+var products=[
+	{id:1,productname:"Rompe Cabeza Barco",price:30,category:"Barcos",size:"15x5x15"},
+	{id:2,productname:"Rompe Cabeza Tractor",price:90,category:"Vehículos,Máquinas",size:"15x10x10"},
+	{id:3,productname:"Rompe Cabeza Avioneta WW2",price:10,category:"Aviones",size:"10x10x5"},
+	{id:4,productname:"Rompe Cabeza Avion WW1",price:30,category:"Aviones",size:"20x20x10"},
+	{id:5,productname:"Rompe Cabeza Ford A",price:60,category:"Vehículos",size:"25x10x10"},
+	{id:6,productname:"Rompe Cabeza Avion Cessna",price:60,category:"Aviones",size:"30x40x10"},
+	{id:7,productname:"Rompe Cabeza Autito",price:30,category:"Vehículos",size:"7x4x5"},
+	{id:8,productname:"Rompe Cabeza Vaca 3D",price:90,category:"Animales",size:"15x5x10"},
+	{id:9,productname:"Rompe Cabeza Picadora",price:70,category:"Máquinas,Vehículos",size:"20x12x10"},
+	{id:10,productname:"Rompe Cabeza Cosechadora",price:130,category:"Máquinas,Vehículos",size:"20x25x15"},
+	{id:11,productname:"Rompe Cabeza Helicoptero",price:90,category:"Aviones",size:"25x25x10"},
+	{id:12,productname:"Rompe Cabeza Scania",price:90,category:"Vehículos,Máquinas",size:"35x10x10"},
+	{id:13,productname:"Rompe Cabeza Scania Grande",price:180,category:"Vehículos,Máquinas",size:"70x20x20"},
+	{id:14,productname:"Rompe Cabeza Caterpillar",price:70,category:"Máquinas,Vehículos",size:"20x10x10"},
+	{id:15,productname:"Rompe Cabeza Barco",price:80,category:"Barcos",size:"30x10x15"},
+	{id:16,productname:"Rompe Cabeza Caballo",price:90,category:"Animales",size:"25x10x25"},
+	{id:17,productname:"Rompe Cabeza Mini Helicoptero",price:15,category:"Aviones",size:"15x10x5"},
+	{id:18,productname:"Rompe Cabeza Helicoptero",price:40,category:"Aviones",size:"30x30x15"},
+	{id:19,productname:"Rompe Cabeza Conejo",price:20,category:"Animales,Canasta",size:"15x7x10"},
+	{id:20,productname:"Rompe Cabeza Canasta Bicicleta",price:40,category:"Canasta,Vehículos",size:"25x15x20"},
+	{id:21,productname:"Calendario Rotativo",price:100,category:"Armados,Calendarios",size:"18x8x18"},
 	
-	for(var i=0;i<products.length;i++){
-		var id=products[i].id;
-		var productname=products[i].productname;
-		var price=10*Math.ceil(1.1*products[i].price/10);
-		var assprice=10*Math.ceil(price/10);
-		data +=`<div class="bg-gray-100 p-6 rounded-lg shadow-md text-center" style="max-width:400px;"><img src="comprarapida/${id}.jpg" style="width:100%;max-width:300px;" class="rounded-lg mb-1" onerror="this.style.display='none'"><div class="rounded-lg mb-1" style="width:100%;max-width:300px;"><b>${productname}</b><br><a class="buyprice">Gs${price},000</a><br><input type="checkbox" style="width:20px;height:20px;"/><a> Armado +Gs${assprice},000</a><br><br><button class="buybutton">Comprar</button></div></div>`;
+	/*
+	{id:22,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:23,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:24,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:25,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:26,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:27,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:28,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:29,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:30,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:31,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:32,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:33,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:34,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:35,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:36,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:37,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:38,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:39,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:40,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:41,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:42,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:43,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:44,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:45,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:46,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:47,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:48,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:49,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	{id:50,productname:"Rompe Cabeza ",price:,category:"",size:""},
+	*/
+];
+
+var cart=[];
+var phone="595972541497"; // TU NÚMERO
+
+function initCategories(){
+	let cats=[...new Set(products.map(p=>p.category.split(',')[0]))];
+	let sel=document.getElementById("categoryFilter");
+	cats.forEach(c=>sel.innerHTML+=`<option value="${c}">${c}</option>`);
+}
+
+function renderProducts(){
+	let cat=document.getElementById("categoryFilter").value;
+	let html="";
+	products.filter(p=>cat==="all"||p.category.includes(cat))
+	.forEach(p=>{
+		var assemblyoption='';
+		if(!p.category.includes('Armado')){assemblyoption=`<label style="font-size:10pt;">
+					  <input type="checkbox" id="a${p.id}" style="margin:0;vertical-align:middle;">
+					  Armado +Gs ${p.price},000
+					</label>`;}
+		html+=`
+		<div class="card">
+			<img src="comprarapida/${p.id}.jpg">
+			<div class="card-body">
+				<h4>${p.productname}</h4>
+				<div style="font-size:10pt;color:grey;">${p.size}cm</div>
+				<div class="price">Gs <a style="font-size:18pt;">${p.price}</a>,000</div>
+				<div class="controls">
+					Cant <input type="number" value="1" id="q${p.id}">
+					<br>
+					${assemblyoption}
+					<br><br>
+					<button onclick="addToCart(${p.id})">Agregar</button>
+				</div>
+			</div>
+		</div>`;
+	});
+	document.getElementById("productList").innerHTML=html;
+}
+
+function addToCart(id){
+	let qty=parseInt(document.getElementById("q"+id).value);
+
+	// ❗ remove / ignore if qty <= 0
+	if(qty<=0) return;
+
+	let p=products.find(x=>x.id===id);
+	let asm=false;
+	try{asm=document.getElementById("a"+id).checked;}catch(e){}
+	let unit=asm?p.price*2:p.price;
+
+	cart.push({
+		id:p.id,
+		name:p.productname,
+		qty:qty,
+		asm:asm,
+		total:unit*qty
+	});
+	renderCart();
+	showAddedToast(); // 👈 animation
+}
+
+function removeItem(index){
+	cart.splice(index,1);
+	renderCart();
+}
+
+function renderCart(){
+	let html="",total=0;
+
+	cart.forEach((c,i)=>{
+		total+=c.total;
+		html+=`
+		<div class="cart-item">
+			<span>${c.qty}x <img style="height:20px;" src="comprarapida/${c.id}.jpg"></img> ${c.name} ${c.asm?"(Armado)":""} = ${c.total},000</span>
+			<button class="remove" onclick="removeItem(${i})">✕</button>
+		</div>`;
+	});
+	var discount=-0.1*total;
+	if(Math.abs(discount)>50){
+	total+=discount;
+		html+=`
+		<div class="cart-item">
+			<span>descuento mayorista ${discount},000</span>
+		</div>`;
 	}
-	document.getElementById('products').innerHTML=data;
+
+	document.getElementById("cartItems").innerHTML=html||"<i>Carrito vacío</i>";
+	document.getElementById("totalPrice").innerText="Total: "+total+",000";
+}
+
+function checkout(){
+	if(!cart.length) return alert("Carrito vacío");
+
+	let msg="Pedido:%0A";
+	cart.forEach(c=>{
+		msg+=`${c.qty}x ${c.name} ${c.asm?"(Armado)":""} = ${c.total},000%0A`;
+	});
+	//DISCOUNT CODE IS COPY FROM renderCart function
+	var total=cart.reduce((s,c)=>s+c.total,0);
+	var discount=-0.1*total;
+	if(Math.abs(discount)>50){
+	total+=discount;
+		msg+=`descuento mayorista ${discount},000%0A`;
 	}
-  </script>
+	/////////
+	msg+=`%0ATotal: ${total},000%0A`;
+	msg+=`Nombre: ${document.getElementById('name').value}%0ADirección: ${document.getElementById('address').value}`;
+
+	let url=`https://wa.me/${phone}?text=${msg}`;
+	window.open(url,"_blank");
+
+	/*document.getElementById("qrImg").src=
+	`https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(url)}`;
+	document.getElementById("qrBox").style.display="block";*/
+}
+
+function showAddedToast(){
+	let toast=document.createElement("div");
+	toast.id="cartToast";
+	toast.innerText="Agregado al carrito..";
+	document.body.appendChild(toast);
+
+	setTimeout(()=>toast.remove(),1000);
+}
+
+
+initCategories();
+renderProducts();
+</script>
+
 </body>
 </html>
