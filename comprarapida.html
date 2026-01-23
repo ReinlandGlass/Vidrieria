@@ -249,7 +249,7 @@ function renderCart(){
 			<button class="remove" onclick="removeItem(${i})">✕</button>
 		</div>`;
 	});
-	var discount=-0.1*total;
+	var discount=Math.floor(-0.1*total);
 	if(Math.abs(discount)>50){
 	total+=discount;
 		html+=`
@@ -271,7 +271,7 @@ function checkout(){
 	});
 	//DISCOUNT CODE IS COPY FROM renderCart function
 	var total=cart.reduce((s,c)=>s+c.total,0);
-	var discount=-0.1*total;
+	var discount=Math.floor(-0.1*total);
 	if(Math.abs(discount)>50){
 	total+=discount;
 		msg+=`descuento mayorista ${discount},000%0A`;
@@ -304,4 +304,5 @@ renderProducts();
 
 </body>
 </html>
+
 
