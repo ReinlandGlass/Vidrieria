@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-17906376311"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-17906376311');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tienda de Artesanía</title>
@@ -69,6 +60,37 @@ h1, h2, h3, h4, h5, h6{
 	80%{opacity:1}
 	100%{opacity:0}
 }
+
+
+#floatingCart {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: red;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 9999;
+}
+
+#floatingCart:hover {
+  transform: scale(1.1);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.4);
+}
+
+/* ---- Just for demo spacing ---- */
+.section {
+  height: 900px;
+  padding: 40px;
+}
 </style>
 </head>
 
@@ -76,7 +98,7 @@ h1, h2, h3, h4, h5, h6{
 
 <header>
 	<img style="height:30px;" src="logo.svg"></img>
-	<h2>Tienda de Artesanía</h2>
+	<h2>Catálogo de Artesanía</h2>
 	<p>Compra rápida por WhatsApp</p>
 </header>
 
@@ -91,7 +113,7 @@ h1, h2, h3, h4, h5, h6{
 	<div class="products" id="productList"></div>
 
 	<div class="cart">
-		<h2>Carrito</h2>
+		<h2 id="cartTitle">Carrito</h2>
 		<div id="cartItems"></div>
 		<div class="total" id="totalPrice">Total: 0</div>
 
@@ -125,7 +147,15 @@ h1, h2, h3, h4, h5, h6{
 
 </div>
 
+<div id="floatingCart" onclick="goToCart()">🛒</div>
+
 <script>
+
+function goToCart() {
+  document.getElementById("cartTitle")
+    .scrollIntoView({ behavior: "smooth" });
+}
+
 var products=[
 	{id:1,productname:"Rompe Cabeza Barco",price:30,category:"Barcos",size:"15x5x15"},
 	{id:2,productname:"Rompe Cabeza Tractor",price:90,category:"Vehículos,Máquinas",size:"15x10x10"},
@@ -331,5 +361,3 @@ renderProducts();
 
 </body>
 </html>
-
-
