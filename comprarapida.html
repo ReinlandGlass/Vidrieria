@@ -94,7 +94,7 @@ h1, h2, h3, h4, h5, h6{
 </style>
 </head>
 
-<body>
+<body id="body" onload="onload();">
 
 <header>
 	<img style="height:30px;" src="logo.svg"></img>
@@ -150,6 +150,73 @@ h1, h2, h3, h4, h5, h6{
 <div id="floatingCart" onclick="goToCart()">🛒</div>
 
 <script>
+const isoDate = new Date().toISOString().slice(0, 10);
+/*var isoDate = '2026-1-1';
+var isoDateint = [1,1];
+setTimeout(function(){setInterval(onload,500);},2000);
+function showToastedDate(){
+	let toast=document.createElement("div");
+	toast.id="cartToast";
+	toast.innerText=isoDate;
+	document.body.appendChild(toast);
+
+	setTimeout(()=>toast.remove(),1000);
+}
+*/
+function onload(){
+	/*isoDateint[1]+=4;
+	if(isoDateint[1]>30){isoDateint[1]=1;isoDateint[0]+=1;}
+	isoDate='2026-'+isoDateint[0]+'-'+isoDateint[1];
+	showToastedDate();
+	promote('prom','red','');
+	renderProducts('all');
+	document.getElementById('body').style.backgroundColor='#f4f4f4';
+	*/
+	
+	
+	//valentines
+	if(desdeHasta('2-1','2-14')){promote('Valentines!❤','#FF1493','Regalos para Dia de los Enamorados..');renderProducts('Amor');document.getElementById('categoryFilter').value='Amor';document.getElementById('body').style.backgroundColor='pink';}
+	
+	//pascua
+	if(desdeHasta('3-10','4-8')){promote('Felizes Pascua!','#59301D','Cristo Vive!');renderProducts('Pascua');document.getElementById('categoryFilter').value='Pascua';document.getElementById('body').style.backgroundColor='#E2B9A6';}
+	
+	//Dia Madre
+	if(desdeHasta('5-1','5-14')){promote('Feliz Dia Mama!','#ED32D3','Regala lo mejor a tu Mama!');renderProducts('Dia Madre');document.getElementById('categoryFilter').value='Dia Madre';document.getElementById('body').style.backgroundColor='#FFBFF6';}
+	
+	//Dia Padre
+	if(desdeHasta('6-1','6-15')){promote('Feliz Dia Papa!','#1192C0','Regala lo mejor a tu Papa!');renderProducts('Dia Padre');document.getElementById('categoryFilter').value='Dia Padre';document.getElementById('body').style.backgroundColor='#BDE9F9';}
+	
+	//Dia Padre
+	if(desdeHasta('7-1','7-30')){promote('Feliz Dia de la Amistad!','#5AC011','Regala lo mejor para el dia de la Amistad!');renderProducts('Dia Amistad');document.getElementById('categoryFilter').value='Dia Amistad';document.getElementById('body').style.backgroundColor='#BCF693';}
+	
+	//Dia Niño
+	if(desdeHasta('8-1','8-16')){promote('Feliz Dia del Niño!','#EBC314','Regala lo mejor tus hijos!');renderProducts('Juegos');document.getElementById('categoryFilter').value='Juegos';document.getElementById('body').style.backgroundColor='#F9EEBD';}
+	
+	
+	//Navidad
+	if(desdeHasta('11-20','12-30')){promote('Felices Fiestas!','#C01111','Regala lo mejor en esta Navidad!');renderProducts('all');document.getElementById('body').style.backgroundColor='#F9BDBD';}
+	
+}
+
+function desdeHasta(desde, hasta) {
+  const [, month, day] = isoDate.split('-').map(Number);
+  const dateValue = month * 100 + day;
+
+  const [dMonth, dDay] = desde.split('-').map(Number);
+  const desdeValue = dMonth * 100 + dDay;
+
+  const [hMonth, hDay] = hasta.split('-').map(Number);
+  const hastaValue = hMonth * 100 + hDay;
+
+  return dateValue >= desdeValue && dateValue <= hastaValue;
+}
+
+
+function promote(title,color,text){
+	products[0].title=title;
+	products[0].color=color;
+	products[0].text=text+'<button class="checkout" onclick="promote('+"'prom'"+','+"''"+','+"''"+');renderProducts('+"'all'"+');">Ver Todos</button>';
+}
 
 function goToCart() {
   document.getElementById("cartTitle")
@@ -157,34 +224,35 @@ function goToCart() {
 }
 
 var products=[
-	{id:1,productname:"Rompe Cabeza Barco",price:30,category:"Barcos",size:"15x5x15"},
-	{id:2,productname:"Rompe Cabeza Tractor",price:90,category:"Vehículos,Máquinas",size:"15x10x10"},
-	{id:3,productname:"Rompe Cabeza Avioneta WW2",price:10,category:"Aviones",size:"10x10x5"},
-	{id:4,productname:"Rompe Cabeza Avion WW1",price:30,category:"Aviones",size:"20x20x10"},
-	{id:5,productname:"Rompe Cabeza Ford A",price:60,category:"Vehículos",size:"25x10x10"},
-	{id:6,productname:"Rompe Cabeza Avion Cessna",price:60,category:"Aviones",size:"30x40x10"},
+	{title:"prom",color:"red",text:"",category:"ad"},
+	{id:1,productname:"Rompe Cabeza Barco",price:30,category:"Barcos,Dia Padre",size:"15x5x15"},
+	{id:2,productname:"Rompe Cabeza Tractor",price:90,category:"Vehículos,Máquinas,Dia Padre",size:"15x10x10"},
+	{id:3,productname:"Rompe Cabeza Avioneta WW2",price:10,category:"Dia Padre,Aviones",size:"10x10x5"},
+	{id:4,productname:"Rompe Cabeza Avion WW1",price:30,category:"Aviones,Dia Padre",size:"20x20x10"},
+	{id:5,productname:"Rompe Cabeza Ford A",price:60,category:"Dia Amistad,Vehículos,Dia Padre",size:"25x10x10"},
+	{id:6,productname:"Rompe Cabeza Avion Cessna",price:60,category:"Aviones,Dia Padre",size:"30x40x10"},
 	{id:7,productname:"Rompe Cabeza Autito",price:30,category:"Vehículos",size:"7x4x5"},
-	{id:8,productname:"Rompe Cabeza Vaca 3D",price:90,category:"Animales",size:"15x5x10"},
-	{id:9,productname:"Rompe Cabeza Picadora",price:70,category:"Máquinas,Vehículos",size:"20x12x10"},
-	{id:10,productname:"Rompe Cabeza Cosechadora",price:130,category:"Máquinas,Vehículos",size:"20x25x15"},
+	{id:8,productname:"Rompe Cabeza Vaca 3D",price:90,category:"Animales,Dia Padre",size:"15x5x10"},
+	{id:9,productname:"Rompe Cabeza Picadora",price:70,category:"Máquinas,Vehículos,Dia Padre",size:"20x12x10"},
+	{id:10,productname:"Rompe Cabeza Cosechadora",price:130,category:"Máquinas,Vehículos,Dia Padre",size:"20x25x15"},
 	{title:"Compra Mayorista!",color:"red",text:"Cada Compra de 500 Mil incluye 10% de Descuento!",category:"ad"},
-	{id:11,productname:"Rompe Cabeza Helicoptero",price:90,category:"Aviones",size:"25x25x10"},
-	{id:12,productname:"Rompe Cabeza Scania",price:90,category:"Vehículos,Máquinas",size:"35x10x10"},
-	{id:13,productname:"Rompe Cabeza Scania Grande",price:180,category:"Vehículos,Máquinas",size:"70x20x20"},
-	{id:14,productname:"Rompe Cabeza Caterpillar",price:70,category:"Máquinas,Vehículos",size:"20x10x10"},
-	{id:15,productname:"Rompe Cabeza Barco",price:80,category:"Barcos",size:"30x10x15"},
-	{id:16,productname:"Rompe Cabeza Caballo",price:90,category:"Animales",size:"25x10x25"},
-	{id:17,productname:"Rompe Cabeza Mini Helicoptero",price:15,category:"Aviones",size:"15x10x5"},
-	{id:18,productname:"Rompe Cabeza Helicoptero",price:40,category:"Aviones",size:"30x30x15"},
+	{id:11,productname:"Rompe Cabeza Helicoptero",price:90,category:"Aviones,Dia Padre",size:"25x25x10"},
+	{id:12,productname:"Rompe Cabeza Scania",price:90,category:"Vehículos,Máquinas,Dia Padre",size:"35x10x10"},
+	{id:13,productname:"Rompe Cabeza Scania Grande",price:180,category:"Vehículos,Máquinas,Dia Padre",size:"70x20x20"},
+	{id:14,productname:"Rompe Cabeza Caterpillar",price:70,category:"Máquinas,Vehículos,Dia Padre",size:"20x10x10"},
+	{id:15,productname:"Rompe Cabeza Barco",price:80,category:"Barcos,Dia Padre,Dia Amistad",size:"30x10x15"},
+	{id:16,productname:"Rompe Cabeza Caballo",price:90,category:"Animales,Dia Padre,Dia Amistad",size:"25x10x25"},
+	{id:17,productname:"Rompe Cabeza Mini Helicoptero",price:15,category:"Aviones,Dia Padre",size:"15x10x5"},
+	{id:18,productname:"Rompe Cabeza Helicoptero",price:40,category:"Aviones,Dia Padre",size:"30x30x15"},
 	{id:19,productname:"Rompe Cabeza Conejo",price:20,category:"Animales,Pascua,Cajita",size:"15x7x10"},
-	{id:20,productname:"Rompe Cabeza Canasta Bicicleta",price:40,category:"Cajita,Vehículos",size:"25x15x20"},
-	{id:21,productname:"Calendario Rotativo",price:100,category:"Armados,Calendarios",size:"18x8x18"},
-	{id:22,productname:"Figura Tematica Pescador",price:40,category:"Armados",size:"20x12x10"},
-	{id:23,productname:"Figura Tematica Cazador",price:40,category:"Armados",size:"20x12x10"},
+	{id:20,productname:"Rompe Cabeza Canasta Bicicleta",price:40,category:"Cajita,Vehículos,Dia Madre",size:"25x15x20"},
+	{id:21,productname:"Calendario Rotativo",price:100,category:"Armados,Calendarios,Dia Padre,Dia Amistad",size:"18x8x18"},
+	{id:22,productname:"Figura Tematica Pescador",price:40,category:"Armados,Dia Padre",size:"20x12x10"},
+	{id:23,productname:"Figura Tematica Cazador",price:40,category:"Armados,Dia Padre",size:"20x12x10"},
 	{id:24,productname:"Rompe Cabeza Saegen",price:30,category:"Armados",size:"20x10"},
 	{id:25,productname:"Rompe Cabeza Sopa Animales",price:35,category:"Armados,Animales",size:"20x30"},
 	{id:26,productname:"Rompe Cabeza Dreieck",price:20,category:"Armados",size:"20x10"},
-	{id:27,productname:"Juego Futbol Magnetico",price:250,category:"Armados,Juegos",size:"30x30x10"},
+	{id:27,productname:"Juego Futbol Magnetico",price:250,category:"Armados,Juegos,Dia Amistad",size:"30x30x10"},
 	{title:"Envíos a Todo Paraguay!",color:"green",text:"Te Enviámos tu Pedido por Transportadora!",category:"ad"},
 	{id:28,productname:"Marco para Fotos Vertical",price:50,category:"Marcos,Armados",size:"16x20"},
 	{id:29,productname:"Marco para Fotos Horizontal",price:50,category:"Marcos,Armados",size:"22x16"},
@@ -193,40 +261,41 @@ var products=[
 	{id:32,productname:"Canasta Pascua CAJ-47001",price:80,category:"Armados,Cajita,Pascua",size:"30x18x10"},
 	{id:33,productname:"Canasta Pascua CAJ-37001",price:50,category:"Pascua,Armados,Cajita",size:"20x10x25"},
 	{id:34,productname:"Canasta Pascua CAJ-37002",price:50,category:"Armados,Cajita,Pascua",size:"20x3x25"},
-	{id:35,productname:"Cajita MDF",price:50,category:"Cajita,Armados",size:"15x15x6"},
-	{id:36,productname:"Cajita MDF",price:40,category:"Cajita,Armados",size:"10x11x5"},
-	{id:37,productname:"Cajita MDF",price:60,category:"Cajita,Armados",size:"19x19x7"},
-	{id:38,productname:"Cajita MDF",price:60,category:"Cajita,Armados",size:"19x19x4"},
-	{id:39,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados",size:"25x15x5"},
-	{id:40,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados",size:"25x15x5"},
-	{id:41,productname:"Iman MDF",price:10,category:"Imanes,Armados",size:"7"},
-	{id:42,productname:"Iman Acrilico",price:20,category:"Imanes,Armados",size:"7"},
+	{id:35,productname:"Cajita MDF",price:50,category:"Cajita,Armados,Dia Madre,Dia Amistad",size:"15x15x6"},
+	{id:36,productname:"Cajita MDF",price:40,category:"Cajita,Armados,Dia Madre,Dia Amistad",size:"10x11x5"},
+	{id:37,productname:"Cajita MDF",price:60,category:"Cajita,Armados,Dia Madre,Dia Amistad",size:"19x19x7"},
+	{id:38,productname:"Cajita MDF",price:60,category:"Cajita,Armados,Dia Madre",size:"19x19x4"},
+	{id:39,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados,Dia Padre,Dia Amistad",size:"25x15x5"},
+	{id:40,productname:"Juego Chess y Dama",price:140,category:"Juegos,Armados,Dia Padre,Dia Amistad",size:"25x15x5"},
+	{id:41,productname:"Iman MDF",price:10,category:"Imanes,Armados,Dia Padre",size:"7"},
+	{id:42,productname:"Iman Acrilico",price:20,category:"Dia Padre,Imanes,Armados",size:"7"},
 	{id:43,productname:"Llavero MDF",price:10,category:"Llaveros,Armados",size:"7"},
 	{id:44,productname:"Llavero Acrilico",price:20,category:"Llaveros,Armados",size:"7"},
 	{id:45,productname:"Llavero Acrilico Paraguay",price:20,category:"Llaveros,Armados",size:"7"},
-	{id:46,productname:"Iman Acrilico Paraguay",price:20,category:"Imanes,Armados",size:"7"},
-	{id:47,productname:"Vaca MDF con Logo Personalizable",price:30,category:"Armados,Personalizable",size:"15x5x10"},
-	{id:48,productname:"Obseqio Acrilico Personalizable",price:60,category:"Personalizable,Armado,Obseqio",size:"15x15"},
-	{id:49,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Obseqio,Personalizable,Armado",size:"15x15"},
-	{id:50,productname:"Obseqio MDF cod.50 Personalizable",price:60,category:"Obseqio,Personalizable,Armado",size:"20x20"},
-	{id:51,productname:"Obseqio MDF cod.51 Personalizable",price:60,category:"Personalizable,Armado,Obseqio",size:"15x15"},
-	{id:52,productname:"Obseqio MDF cod.52 Personalizable",price:80,category:"Personalizable,Armado,Obseqio",size:"15x15"},
-	{id:53,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Personalizable,Armado,Obseqio",size:"15x15"},
-	{id:54,productname:"Obseqio 2Corazones Personalizable",price:50,category:"Personalizable,Armado,Obseqio",size:"20x13"},
-	{id:55,productname:"Obseqio cod.55 Personalizable",price:50,category:"Personalizable,Armado,Obseqio",size:"20x15"},
+	{id:46,productname:"Iman Acrilico Paraguay",price:20,category:"Imanes,Armados,Dia Padre",size:"7"},
+	{id:47,productname:"Vaca MDF con Logo Personalizable",price:30,category:"Armados,Personalizable,Dia Padre",size:"15x5x10"},
+	{id:48,productname:"Obseqio Acrilico Personalizable",price:60,category:"Personalizable,Armado,Obseqio,Dia Madre,Dia Padre,Dia Amistad",size:"15x15"},
+	{id:49,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Obseqio,Personalizable,Armado,Dia Madre,Dia Padre,Dia Amistad",size:"15x15"},
+	{id:50,productname:"Obseqio MDF cod.50 Personalizable",price:60,category:"Obseqio,Personalizable,Armado,Amor,Dia Madre,Dia Padre,Dia Amistad",size:"20x20"},
+	{id:51,productname:"Obseqio MDF cod.51 Personalizable",price:60,category:"Personalizable,Armado,Obseqio,Dia Madre,Dia Padre,Dia Amistad",size:"15x15"},
+	{id:52,productname:"Obseqio MDF cod.52 Personalizable",price:80,category:"Personalizable,Armado,Obseqio,Dia Madre,Dia Padre,Dia Amistad",size:"15x15"},
+	{id:53,productname:"Obseqio Acrilico Con Color Personalizable",price:80,category:"Personalizable,Armado,Obseqio,Dia Padre,Dia Amistad",size:"15x15"},
+	{id:54,productname:"Obseqio 2Corazones Personalizable",price:50,category:"Amor,Personalizable,Armado,Obseqio,Dia Amistad",size:"20x13"},
+	{id:55,productname:"Obseqio cod.55 Personalizable",price:50,category:"Personalizable,Armado,Obseqio,Dia Amistad",size:"20x15"},
 	{id:56,productname:"Obseqio Cruz de Jesus cod.56 Personalizable",price:50,category:"Jesus,Personalizable,Armado,Obseqio,Pascua",size:"12x20"},
-	{id:57,productname:"Obseqio Flor cod.57 Personalizable",price:50,category:"Personalizable,Armado,Obseqio",size:"10x20"},
-	{id:58,productname:"Obseqio Pareja Danzando Personalizable",price:50,category:"Personalizable,Armado,Obseqio",size:"15x15"},
-	{id:59,productname:"Obseqio Zapatilla Personalizable",price:50,category:"Personalizable,Armado,Obseqio",size:"15x20"},
-	{id:60,productname:"Obseqio MDF cod.60 Personalizable",price:100,category:"Personalizable,Armado,Obseqio",size:"30x23"},
-	{id:61,productname:"Obseqio Cruz Jesus cod.61",price:30,category:"Pascua,Armado,Obseqio,Jesus",size:"19x13"},
-	{id:62,productname:"Obseqio Cruz Jesus cod.62",price:60,category:"Pascua,Armado,Obseqio,Jesus",size:"23x15"},
+	{id:57,productname:"Obseqio Flor cod.57 Personalizable",price:50,category:"Personalizable,Armado,Obseqio,Amor,Dia Madre,Dia Amistad",size:"10x20"},
+	{id:58,productname:"Obseqio Pareja Danzando Personalizable,",price:50,category:"Personalizable,Armado,Obseqio,Amor",size:"15x15"},
+	{id:59,productname:"Obseqio Zapatilla Personalizable",price:50,category:"Dia Madre,Personalizable,Armado,Obseqio,Amor",size:"15x20"},
+	{id:60,productname:"Obseqio MDF cod.60 Personalizable",price:100,category:"Personalizable,Armado,Obseqio,Amor,Dia Amistad",size:"30x23"},
+	{id:61,productname:"Obseqio Cruz Jesus cod.61",price:30,category:"Pascua,Armado,Obseqio,Jesus,Amor",size:"19x13"},
+	{id:62,productname:"Obseqio Cruz Jesus cod.62",price:60,category:"Pascua,Armado,Obseqio,Jesus,Amor",size:"23x15"},
 	{id:63,productname:"Obseqio Cruz Jesus cod.63",price:60,category:"Pascua,Armado,Obseqio,Jesus",size:"21x24"},
 	{id:64,productname:"Canasta Pascua cod.64",price:60,category:"Cajita,Pascua,Armado",size:"20x11x17"},
 	{id:65,productname:"Canasta Pascua cod.65",price:70,category:"Cajita,Pascua,Armado",size:"26x13x21"},
 	{id:66,productname:"Canasta Pascua cod.66",price:60,category:"Cajita,Pascua,Armado",size:"12x10x15"},
 	{id:67,productname:"Canasta Pascua cod.67",price:30,category:"Cajita,Pascua,Armado",size:"10x10x11"},
 ];
+
 
 var cart=[];
 var phone="595972541497"; // TU NÚMERO
@@ -237,12 +306,13 @@ function initCategories(){
 	cats.forEach(c => c !== "ad" && (sel.innerHTML += `<option value="${c}">${c}</option>`));
 }
 
-function renderProducts(){
+function renderProducts(filtcat){
 	let cat=document.getElementById("categoryFilter").value;
+	if(filtcat!=null){cat=filtcat;}
 	let html="";
 	products.filter(p=>cat==="all"||p.category.includes(cat)||p.category==="ad")
 	.forEach(p=>{
-		if(p.category==="ad"){
+		if((p.category==="ad")&&(p.title!="prom")){
 		html+=`
 			<div class="card" style="background-color:${p.color};color:white;">
 				<div class="card-body">
@@ -250,7 +320,7 @@ function renderProducts(){
 					<h4>${p.text}</h4>
 				</div>
 			</div>`;
-		}else{
+		}else if(p.title!="prom"){
 		var assemblyoption='';
 		if(!p.category.includes('Armado')){assemblyoption=`<label style="font-size:10pt;">
 					  <input type="checkbox" id="a${p.id}" style="margin:0;vertical-align:middle;">
@@ -375,4 +445,3 @@ renderProducts();
 
 </body>
 </html>
-
