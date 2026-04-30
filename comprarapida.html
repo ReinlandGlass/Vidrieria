@@ -392,7 +392,7 @@ function renderCart(){
 		</div>`;
 	});
 	var discount=Math.floor(-0.05*total);
-	if(Math.abs(discount)>49.9){
+	if(Math.abs(discount)>24.999){
 	total+=discount;
 		html+=`
 		<div class="cart-item">
@@ -414,7 +414,7 @@ function checkout(){
 	//DISCOUNT CODE IS COPY FROM renderCart function
 	var total=cart.reduce((s,c)=>s+c.total,0);
 	var discount=Math.floor(-0.05*total);
-	if(Math.abs(discount)>49.9){
+	if(Math.abs(discount)>24.999){
 	total+=discount;
 		msg+=`descuento mayorista ${formatThousands(discount)},000%0A`;
 	}
