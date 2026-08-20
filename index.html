@@ -60,6 +60,30 @@
     60%{ left:120%; }
     100%{ left:120%; }
   }
+  
+
+#inicio {
+	padding:300px;
+}
+#splashtitle {
+	font-size: 24px;
+}
+#splashtext {
+	font-size: 16px;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    #inicio {
+		padding:80px;
+    }
+	#splashtitle {
+        font-size: 18px;
+    }
+	#splashtext {
+        font-size: 12px;
+    }
+}
   </style>
 </head>
 <body class="font-['Roboto'] bg-gray-100 text-gray-800" onload="onload();">
@@ -93,11 +117,10 @@
   </nav>
 
   <!-- Hero Section -->
-  <section id="inicio" class="bg-cover bg-center h-screen flex items-center justify-center text-white" style="background-image: url('splash.jpg')">
-    <div class="container mx-auto text-center bg-black bg-opacity-50 p-8 rounded-lg">
-      <h2 class="text-4xl md:text-5xl font-bold mb-4">Aberturas de Calidad para tu Hogar</h2>
-      <p class="text-lg md:text-xl mb-6">Puertas y ventanas diseñadas para durar, con estilo y funcionalidad.</p>
-      <!--<a href="#contacto" class="bg-blue-600 text-white py-2 px-6 rounded-full hover:bg-blue-700">Contáctanos</a>-->
+  <section id="inicio" class="bg-cover bg-center flex items-center justify-center text-white" style="background-image: url('splash.jpg');">
+    <div class="container mx-auto text-center bg-black bg-opacity-50 p-2 rounded-lg">
+      <h2 class="text-4xl md:text-5xl font-bold mb-2" id="splashtitle">Aberturas de Calidad para tu Hogar</h2>
+      <p class="text-lg md:text-xl mb-3" id="splashtext">Puertas y ventanas diseñadas para durar, con estilo y funcionalidad.</p>
     </div>
   </section>
 
