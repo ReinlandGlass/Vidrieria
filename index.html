@@ -86,7 +86,7 @@
 }
   </style>
 </head>
-<body class="font-['Roboto'] bg-gray-100 text-gray-800" onload="onload();">
+<body class="font-['Roboto'] bg-gray-100 text-gray-800" onload="onload();" onscroll="handleScroll();">
 	  <!-- WhatsApp Floating Button -->
 	  
 	  <div class="fixed bottom-4 right-4 flex flex-col gap-4 z-20">
@@ -123,24 +123,35 @@
       <p class="text-lg md:text-xl mb-3" id="splashtext">Puertas y ventanas diseñadas para durar, con estilo y funcionalidad.</p>
     </div>
   </section>
-
-  <!-- Acerca Section -->
-  <section id="acerca" class="py-16">
+  
+  <!-- glassfx section -->
+  <div style="width:100%;height:30px;filter:blur(10px);overflow:hidden;background-color:white;position:relative;">
+	<img id="glassfx" src="glassfx.jpg" style="position:absolute;transition:transform 0.5s;transform:scale(4,1) translate(400%,0);">
+  </div>
+  
+    <!-- images section -->
+  <!--<section id="images" class="bg-white py-16">
     <div class="container mx-auto px-4">
-      <h2 class="text-3xl font-bold text-center mb-8">Acerca de Nosotros</h2>
-      <div class="flex flex-col md:flex-row items-center">
-        <div class="md:w-1/2 mb-6 md:mb-0">
-          <img src="lineas.jpg" alt="Fábrica de aberturas" class="rounded-lg shadow-lg w-full">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+        <div class="text-center">
+          <img src="ventanas/v1.jpg" alt="Ventanas" class="rounded-lg mb-4 w-full">
+          <p>Ventanas Suprema</p>
         </div>
-        <div class="md:w-1/2 md:pl-8">
-			<p class="text-3xl font-bold text-center mb-8" style="color:rgb(30,58,138);"><strong id="nryears">14</strong> años🎉</p>
-          <p class="text-lg mb-4">En <strong>Reinland Glass</strong>, llevamos más de <a id="nryears2">14</a> años fabricando puertas y ventanas de alta calidad. Nos especializamos en soluciones personalizadas que combinan diseño, durabilidad y comodidad.</p>
-          <p class="text-lg mb-4">Trabajamos con materiales de primera línea para garantizar calidad y satisfacción a nuestros clientes.</p>
-          <p class="text-lg">¡Transforma tu hogar con nuestras aberturas!</p>
+		<div class="bg-gray-100 p-6 rounded-lg shadow-md text-left">
+          <p>Ventanas</p>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Suprema</h3>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Alpha</h3>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Inova</h3>
+          <br>
+		  <p>Puertas</p>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Gol</h3>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Alpha</h3>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;">Inova Slider</h3>
         </div>
       </div>
     </div>
-  </section>
+  </section>-->
+  
 
   <!-- Productos Section -->
   <section id="productos" class="bg-white py-16">
@@ -204,6 +215,24 @@
     </div>
   </section>
 
+	<!-- Acerca Section -->
+  <section id="acerca" class="py-16">
+    <div class="container mx-auto px-4">
+      <h2 class="text-3xl font-bold text-center mb-8">Acerca de Nosotros</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="lineas.jpg" alt="Fábrica de aberturas" class="rounded-lg shadow-lg w-full">
+        </div>
+        <div class="md:w-1/2 md:pl-8">
+			<p class="text-3xl font-bold text-center mb-8" style="color:rgb(30,58,138);"><strong id="nryears">14</strong> años🎉</p>
+          <p class="text-lg mb-4">En <strong>Reinland Glass</strong>, llevamos más de <a id="nryears2">14</a> años fabricando puertas y ventanas de alta calidad. Nos especializamos en soluciones personalizadas que combinan diseño, durabilidad y comodidad.</p>
+          <p class="text-lg mb-4">Trabajamos con materiales de primera línea para garantizar calidad y satisfacción a nuestros clientes.</p>
+          <p class="text-lg">¡Transforma tu hogar con nuestras aberturas!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Contacto Section -->
   <section id="contacto" class="py-16">
     <div class="container mx-auto px-4">
@@ -261,14 +290,23 @@
     }
 
     // Toggle mobile menu
-    document.getElementById('menu-toggle').addEventListener('click', () => {
+    /*document.getElementById('menu-toggle').addEventListener('click', () => {
       const menu = document.getElementById('menu');
       menu.classList.toggle('hidden');
-    });
+    });*/
 	
 	function onload(){
 		document.getElementById('nryears').innerHTML=new Date().getFullYear()-2011;
 		document.getElementById('nryears2').innerHTML=new Date().getFullYear()-2011;
+	}
+	
+	function handleScroll() {
+		const scrollY = window.scrollY;
+		if(window.innerWidth>768){
+			document.getElementById("glassfx").style.transform="scale(4,1) translate("+Math.max(-100,(300-(0.8*scrollY)))+"%,0)";
+		}else{
+			document.getElementById("glassfx").style.transform="scale(4,1) translate("+Math.max(-100,(50-(0.8*scrollY)))+"%,0)";
+		}
 	}
   </script>
 </body>
