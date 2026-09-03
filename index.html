@@ -84,6 +84,15 @@
         font-size: 12px;
     }
 }
+
+#picframe {
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+#picframe.loading {
+    opacity: 0;
+}
   </style>
 </head>
 <body class="font-['Roboto'] bg-gray-100 text-gray-800" onload="onload();" onscroll="handleScroll();">
@@ -283,13 +292,13 @@
   function showpic(name){
 	  if(name=="next"){
 		nr_img+=1;
-		document.getElementById("picframe").src=currentname+"/"+nr_img+".jpg";
+		changeImage(currentname+"/"+nr_img+".jpg");
 		document.getElementById("pictext").innerHTML=currentname;
 	  }else if(name=="prev"){
-		if(nr_img>1){nr_img-=1;document.getElementById("picframe").src=currentname+"/"+nr_img+".jpg";document.getElementById("pictext").innerHTML=currentname;document.getElementById("prevbtn").style.opacity=0.3;document.getElementById("prevbtn").style.transition="opacity 0s";setTimeout(function(){document.getElementById("prevbtn").style.transition="opacity .3s";document.getElementById("prevbtn").style.opacity=0},20);}
+		if(nr_img>1){nr_img-=1;changeImage(currentname+"/"+nr_img+".jpg");document.getElementById("pictext").innerHTML=currentname;document.getElementById("prevbtn").style.opacity=0.3;document.getElementById("prevbtn").style.transition="opacity 0s";setTimeout(function(){document.getElementById("prevbtn").style.transition="opacity .3s";document.getElementById("prevbtn").style.opacity=0},20);}
 	  }else{
 		nr_img=1;currentname=name;
-		document.getElementById("picframe").src=currentname+"/"+nr_img+".jpg";
+		changeImage(currentname+"/"+nr_img+".jpg");
 		document.getElementById("pictext").innerHTML=currentname;
 		document.getElementById("picshowroom").style.maxHeight="500px";
 		document.getElementById("prevbtn").style.display="block";
@@ -299,6 +308,21 @@
 		}
 	}
   }
+  
+function changeImage(src) {
+    const img = document.getElementById("picframe");
+
+    img.classList.add("loading");
+
+    const preload = new Image();
+
+    preload.onload = () => {
+        img.src = src;
+        img.classList.remove("loading");
+    };
+
+    preload.src = src;
+}
   
   
     function enviarMensaje() {
