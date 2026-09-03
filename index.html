@@ -144,9 +144,9 @@
     <div class="container mx-auto px-4">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
         <div id="picshowroom" class="text-center" style="overflow:hidden;transition:max-height .5s;max-height:0;">
-			<div id="picbuffer" style="width:300px;height:40%;position:absolute;transform:translate(0,100%);display:none;z-index:100;"><b>Cargando..</b></div>
-		  <img id="picframe" src="ventanas/v1.jpg" alt="Ventanas" class="rounded-lg mb-4 h-full" onclick="showpic('next');" style="position:relative;z-index:105;">
-		  <div id="prevbtn" onclick="showpic('prev');" style="z-index:110;display:none;min-width:160px;width:10%;height:80%;position:absolute;transform:translate(0,-104%);background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));opacity:0;transition:opacity 0s;"></div>
+		  <img id="picframe" src="ventanas/v1.jpg" alt="Ventanas" class="rounded-lg mb-4 h-full" onclick="showpic('next');">
+		  <div id="picbuffer" style="width:380px;height:10px;transform:translate(0,-250px);display:none;"><b>Cargando..</b></div>
+		  <div id="prevbtn" onclick="showpic('prev');" style="display:none;min-width:160px;width:10%;height:80%;position:absolute;transform:translate(0,-104%);background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));opacity:0;transition:opacity 0s;"></div>
           <p id="pictext"></p>
         </div>
 		<div id="picoptions" class="p-6 text-left">
@@ -303,7 +303,6 @@
 		document.getElementById("pictext").innerHTML=currentname;
 		document.getElementById("picshowroom").style.maxHeight="500px";
 		document.getElementById("prevbtn").style.display="block";
-		setTimeout(function(){document.getElementById("picbuffer").style.display="block";},200);
 		let div = document.getElementById("picoptions");
 		for (let child of div.children) {
 			child.style.color = "black";
@@ -315,12 +314,14 @@ function changeImage(src) {
     const img = document.getElementById("picframe");
 
     img.classList.add("loading");
+		document.getElementById('picbuffer').style.display='block';
 
     const preload = new Image();
 
     preload.onload = () => {
         img.src = src;
         img.classList.remove("loading");
+		document.getElementById('picbuffer').style.display='none';
     };
 	
 	preload.onerror = () => {
@@ -370,4 +371,3 @@ function changeImage(src) {
   </script>
 </body>
 </html>
-
