@@ -149,19 +149,22 @@
 		  <div id="prevbtn" onclick="showpic('prev');" style="display:none;min-width:160px;width:10%;height:80%;position:absolute;transform:translate(0,-104%);background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));opacity:0;transition:opacity 0s;"></div>
           <p id="pictext"></p>
         </div>
-		<div id="picoptions" class="p-6 text-left">
-          <p>Ventanas</p>
+		<div id="picoptions" class="grid grid-cols-2 md:grid-cols-1 gap-1 p-1 text-left">
+          <div>
+		  <p>Ventanas</p>
 		  <h3 id="vntanasuprema" class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Suprema</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Alpha</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Inova</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Templado</h3>
-          <br>
+          </div>
+		  <div>
 		  <p>Puertas</p>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Puertas '+this.innerHTML);this.style.color='blue';">Gol</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Puertas '+this.innerHTML);this.style.color='blue';">Alpha</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Puertas '+this.innerHTML);this.style.color='blue';">Aldaba</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Puertas '+this.innerHTML);this.style.color='blue';">Me</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Puertas '+this.innerHTML);this.style.color='blue';">Box de Baño</h3>
+		  </div>
         </div>
       </div>
     </div>
