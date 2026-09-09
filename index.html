@@ -145,6 +145,7 @@
       <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
         <div id="picshowroom" class="text-center" style="overflow:hidden;transition:max-height .5s;max-height:0;">
 		  <img id="picframe" src="ventanas/v1.jpg" alt="Ventanas" class="rounded-lg mb-4 h-full" onclick="showpic('next');">
+		  <img id="picframeguide" src="picshowguide.svg" class="rounded-lg mb-4 h-full" onclick="showpic('next');" style="width:380px;height:150px;transform:translate(0,-350px);opacity:1;transition:opacity 2s;">
 		  <div id="picbuffer" style="width:380px;height:10px;transform:translate(0,-250px);display:none;"><b>Cargando..</b></div>
 		  <div id="prevbtn" onclick="showpic('prev');" style="display:none;min-width:160px;width:10%;height:80%;position:absolute;transform:translate(0,-104%);background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0));opacity:0;transition:opacity 0s;"></div>
           <p id="pictext"></p>
@@ -155,8 +156,7 @@
 		  <h3 id="vntanasuprema" class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Suprema</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Alpha</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Inova</h3>
-		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Mitos</h3>
-		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Fijo</h3>
+		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Mitos</h3>		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Fijo</h3>
 		  <h3 class="text-xl font-semibold mb-2" style="cursor:pointer;" onclick="showpic('Ventanas '+this.innerHTML);this.style.color='blue';">Templado</h3>
           </div>
 		  <div id="picoptionsB2">
@@ -308,6 +308,8 @@
 		document.getElementById("pictext").innerHTML=currentname;
 		document.getElementById("picshowroom").style.maxHeight="500px";
 		document.getElementById("prevbtn").style.display="block";
+		setTimeout(function(){document.getElementById("picframeguide").style.opacity=0;},1000);
+		setTimeout(function(){document.getElementById("picframeguide").style.display="none";},3000);
 		let div = document.getElementById("picoptionsB1");
 		for (let child of div.children) {
 			child.style.color = "black";
